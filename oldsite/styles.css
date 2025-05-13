@@ -1,0 +1,1440 @@
+/* Verwijder alle bestaande stijlen */
+
+/* Nieuwe stijlen */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #0a192f;
+    color: #e6f1ff;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Header en navigatie */
+header {
+    background: linear-gradient(135deg, #0a192f 0%, #172a45 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px; /* Verminderde padding bovenaan voor de fixed nav */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    position: fixed;
+    width: 90%; /* Aangepast van 100% naar 90% */
+    top: 0;
+    z-index: 1000;
+    background: rgba(10, 25, 47, 0.95);
+    backdrop-filter: blur(10px);
+    margin: 0 auto; /* Centreer de navigatie */
+    left: 50%; /* Positie vanaf links */
+    transform: translateX(-50%); /* Compenseer voor de breedte */
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+.hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 5%;
+    margin-top: -60px; /* Negatieve margin om ruimte te compenseren */
+    width: 100%; /* Ensure full width */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin: 1rem 0 2rem;
+    color: #64ffda;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem auto;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.cta-primary, .cta-secondary {
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+    min-width: 150px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.cta-primary {
+    background: #64ffda;
+    color: #0a192f;
+}
+
+.cta-secondary {
+    border: 2px solid #64ffda;
+    color: #64ffda;
+}
+
+header h1 {
+    font-size: 3em;
+    margin: 0;
+    animation: fadeInDown 1s ease-out forwards;
+}
+
+nav a {
+    color: #e6f1ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 1rem;
+    white-space: nowrap; /* Voorkom dat tekst afbreekt */
+    display: inline-block; /* Zorg dat de links als blok worden weergegeven */
+    padding: 5px 10px; /* Voeg wat padding toe */
+}
+
+nav a:hover {
+    color: #bdc3c7; /* Kleurverandering bij hover */
+}
+
+section {
+    padding: 40px 20px; /* Verminderde padding */
+}
+
+.section-title {
+    font-size: 2em;
+    color: #64ffda;
+    text-align: center;
+    margin-bottom: 30px; /* Verminderde marge */
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    width: 50px;
+    height: 4px;
+    background-color: #2563eb;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.about-me {
+    text-align: center;
+}
+
+.about-me p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+.about-me img {
+    width: 200px; /* Pas de grootte aan indien gewenst */
+    border-radius: 50%;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 5px solid #fff;
+}
+
+/* Styling voor links in de about-me sectie */
+.about-me p a {
+    color: #64ffda; /* Changed to use the theme color by default */
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.about-me p a:hover {
+    color: #e6f1ff; /* Changed hover color to light */
+}
+
+.about-me p a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #64ffda;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.about-me p a:hover::after {
+    transform: scaleX(1);
+}
+
+.skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 0 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.skill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: rgba(100, 255, 218, 0.05);
+    color: #64ffda;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.skill i {
+    font-size: 1.2em;
+    color: #64ffda;
+}
+
+/* Ensure project visibility and proper sizing */
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 5%;
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+.project {
+    background: rgba(100, 255, 218, 0.05);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 400px; /* Vaste hoogte voor alle projectkaarten */
+}
+
+.project img {
+    width: 100%;
+    height: 200px; /* Vaste hoogte voor afbeeldingen */
+    object-fit: cover; /* Zorg dat de afbeelding de ruimte vult */
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    background: rgba(100, 255, 218, 0.05);
+}
+
+.project h3 {
+    color: #64ffda;
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.project p {
+    color: #e6f1ff;
+    text-align: center;
+    margin: 0;
+    flex-grow: 1; /* Laat de beschrijving de overgebleven ruimte vullen */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Maximaal 3 regels tekst */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.project-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background: rgba(100, 255, 218, 0.9);
+    color: #0a192f;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.project:hover .project-overlay {
+    transform: translateY(0);
+}
+
+.project::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(100, 255, 218, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project:hover::before {
+    opacity: 1;
+}
+
+.project::after {
+    content: 'Klik voor meer info';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background: rgba(100, 255, 218, 0.9);
+    color: #0a192f;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.project:hover::after {
+    transform: translateY(0);
+}
+
+.project a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Contact sectie */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding: 4rem 5%;
+    background: rgba(100, 255, 218, 0.05);
+    border-radius: 10px;
+    margin: 2rem 5%;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #93c5fd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.contact-form button {
+    background-color: #1e3a8a;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #2563eb;
+}
+
+.contact-form .invalid {
+    border-color: red;
+}
+
+.error-message {
+    color: red;
+    margin-top: -15px;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+footer {
+    background-color: transparent;
+    color: #e6f1ff;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Style voor de iOS-stijl schakelaar */
+.switch {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    width: 50px;
+    height: 26px;
+    z-index: 1000;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px; width: 22px;
+    left: 2px; bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2563eb;
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+/* Animaties */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Social Media Iconen */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.social-icons a {
+    color: #1e3a8a;
+    font-size: 2.5em;
+    transition: color 0.3s, transform 0.3s;
+}
+
+social-icons a:hover {
+    color: #2563eb;
+    transform: scale(1.1);
+}
+
+/* Stijlen voor de dark mode knop */
+#dark-mode-toggle {
+    background: none;
+    border: none;
+    color: #1e3a8a;
+    font-size: 1.5em;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+#dark-mode-toggle:focus {
+    outline: none;
+}
+
+/* Responsief ontwerp met media queries */
+@media (max-width: 768px) {
+    /* Aanpassingen voor tablets */
+    .skills {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px;
+        padding: 0 15px;
+    }
+
+    .skill {
+        padding: 8px 15px;
+        font-size: 0.8em;
+    }
+
+    .projects {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Further reduce for smaller screens */
+    }
+
+    .project img {
+        height: 120px; /* Adjust image height for tablets */
+    }
+
+    /* Pas lettergroottes aan voor kleinere schermen */
+    header h1 {
+        font-size: 2.5em;
+    }
+
+    .section-title {
+        font-size: 1.8em;
+    }
+
+    header {
+        padding: 20px 15px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    .section-title {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    .about-me p {
+        font-size: 1em;
+        line-height: 1.4;
+    }
+
+    .skills {
+        gap: 15px;
+    }
+
+    .skill {
+        padding: 10px 20px;
+        font-size: 0.8em;
+    }
+
+    .social-icons {
+        gap: 20px;
+        margin: 25px 0;
+    }
+
+    .social-icons a {
+        font-size: 2em;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        width: 80%;
+        max-width: 300px;
+        margin: 2rem auto;
+        padding: 0;
+    }
+
+    .cta-primary, 
+    .cta-secondary {
+        width: 100%;
+        text-align: center;
+        margin: 0.5rem auto;
+        padding: 0.8rem 1.5rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .modal-content {
+        padding: 1rem;
+        width: 95%;
+    }
+
+    .project-details {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero h1 {
+        margin-top: 20px;
+    }
+
+    /* Verberg de navigatie volledig op mobiel */
+    nav {
+        display: none;
+    }
+    
+    /* Pas de hero spacing aan omdat er geen navigatie meer is */
+    .hero {
+        padding-top: 20px;
+        margin-top: -40px;
+    }
+    
+    .hero h1 {
+        margin-top: 0;
+    }
+
+    /* Toon alleen de logo/titel in de navigatie */
+    .logo {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .logo h1 {
+        font-size: 1.5em;
+        margin: 0;
+        color: #64ffda;
+        text-align: center;
+    }
+
+    /* Verbeterde button styling voor mobiel */
+    .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        max-width: 300px;
+        margin: 1rem auto;
+        padding: 0 1rem;
+    }
+
+    .cta-primary, 
+    .cta-secondary {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        padding: 0.8rem 1.5rem;
+        box-sizing: border-box;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+
+    nav, .nav-links {
+        display: none;
+    }
+    .hero,
+    .about-me,
+    .skills,
+    .projects,
+    .contact-container {
+        text-align: center;
+        margin: 0 auto;
+        align-items: center;
+    }
+
+    /* Reset header and navigation */
+    nav {
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+        background: rgba(10, 25, 47, 0.95);
+        position: fixed;
+        width: 100%;
+        top: 0;
+    }
+
+    .nav-links {
+        display: none !important; /* Force hide nav links on mobile */
+    }
+
+    .logo h1 {
+        font-size: 1.5em;
+        margin: 0;
+        color: #64ffda;
+        text-align: center;
+    }
+
+    /* Fix hero section */
+    .hero {
+        justify-content: flex-start; /* Changed from center */
+    }
+
+    .hero h1 {
+        font-size: 1.8em;
+        margin: 1rem 0;
+    }
+
+    .cta-buttons {
+        margin: 1rem auto 0; /* Reduced from 2rem */
+    }
+
+    .about-me img {
+        width: 150px; /* Made profile image smaller */
+        margin: 1rem auto; /* Reduced margin */
+    }
+
+    /* Improve content sections */
+    section {
+        padding: 3rem 1rem;
+    }
+
+    .about-me,
+    .skills,
+    .projects,
+    .contact-container {
+        width: 90%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .about-me p {
+        font-size: 1rem;
+        line-height: 1.6;
+        padding: 0 1rem;
+    }
+
+    /* Adjust project grid */
+    .projects {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .project {
+        margin: 0 auto;
+        max-width: 400px;
+    }
+
+    /* Fix contact form */
+    .contact-container {
+        padding: 2rem 1rem;
+    }
+
+    .contact-form {
+        width: 100%;
+    }
+
+    /* Adjust buttons */
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        max-width: 300px;
+        margin: 2rem auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        max-width: 300px;
+        margin: 2rem auto;
+    }
+
+    .cta-primary, 
+    .cta-secondary {
+        width: 80%;
+        text-align: center;
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* Project overlay aanpassingen voor mobiel */
+    .project {
+        height: auto;
+        margin-bottom: 2rem;
+    }
+
+    .project-overlay {
+        position: relative;
+        transform: none;
+        background: rgba(100, 255, 218, 0.1);
+        margin-top: 1rem;
+        width: auto;
+        border-radius: 4px;
+    }
+
+    .project:hover .project-overlay {
+        transform: none;
+    }
+
+    .project::after {
+        display: none; /* Verberg de "Klik voor meer info" text */
+    }
+
+    /* Modal aanpassingen voor mobiel */
+    .modal-content {
+        padding: 1.5rem;
+        margin: 1rem;
+        max-height: 80vh;
+    }
+
+    .project-details {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .tech-stack {
+        margin-bottom: 1rem;
+    }
+
+    .tech-stack ul {
+        justify-content: center;
+    }
+
+    #modalLink {
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    /* Navigation fixes */
+    nav {
+        width: 100%;
+        left: 0;
+        transform: none;
+        padding: 1rem;
+    }
+
+    /* Hero section fixes */
+    .hero {
+        margin-top: 0;
+        padding: 2rem 1rem;
+        min-height: 100vh;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Adjust header for mobile */
+    header {
+        padding-top: 0;
+        min-height: 100vh;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    /* Button adjustments */
+    .cta-buttons {
+        width: 100%;
+        max-width: none;
+        padding: 0 1rem;
+    }
+
+    .cta-primary, 
+    .cta-secondary {
+        width: 100%;
+        max-width: none;
+        margin: 0.5rem 0;
+    }
+
+    /* Project grid adjustments */
+    .projects {
+        padding: 1rem;
+    }
+
+    /* Contact section adjustments */
+    .contact-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    .contact-form {
+        padding: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Aanpassingen voor mobiele apparaten */
+    nav a {
+        margin: 0 10px;
+    }
+
+    .social-icons a {
+        font-size: 2em;
+    }
+
+    .projects {
+        grid-template-columns: 1fr; /* Single column on mobile */
+    }
+
+    .project img {
+        height: 100px; /* Adjust image height for mobile */
+    }
+
+    /* Pas paddings aan voor kleinere schermen */
+    header {
+        padding: 30px 15px;
+    }
+
+    section {
+        padding: 30px 15px;
+    }
+
+    .about-me p {
+        font-size: 1em;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 10px;
+    }
+
+    /* Mobile contact form styles */
+    .contact-form {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 12px;
+        font-size: 16px; /* Prevents iOS auto-zoom on input focus */
+        margin-bottom: 15px;
+    }
+
+    .contact-form button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    #contact .section-title {
+        margin-bottom: 20px;
+    }
+
+    header {
+        padding: 15px 10px;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    nav {
+        padding: 8px;
+    }
+
+    nav a {
+        margin: 0 8px;
+        font-size: 0.9em;
+    }
+
+    section {
+        padding: 20px 10px;
+    }
+
+    .section-title {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    .about-me p {
+        font-size: 0.9em;
+        line-height: 1.4;
+    }
+
+    .about-me img {
+        width: 150px;
+        margin-bottom: 15px;
+    }
+
+    .skills {
+        gap: 10px;
+    }
+
+    .skill {
+        padding: 8px 15px;
+        font-size: 0.75em;
+    }
+
+    .projects {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .project {
+        padding: 15px;
+    }
+
+    .project h3 {
+        font-size: 1.2em;
+    }
+
+    .social-icons {
+        gap: 15px;
+        margin: 20px 0;
+    }
+
+    .social-icons a {
+        font-size: 1.8em;
+    }
+
+    .contact-form {
+        padding: 0 10px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 10px;
+        margin-bottom: 12px;
+        font-size: 0.9em;
+    }
+
+    .contact-form button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .hero h1 {
+        font-size: 1.5em;
+    }
+
+    .project-overlay {
+        font-size: 0.9rem;
+        padding: 0.75rem;
+    }
+
+    .modal-content {
+        padding: 1rem;
+    }
+
+    .tech-stack li {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+/* Voeg animerende stipjes toe */
+.background-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(100, 255, 218, 0.15);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Voeg keyframe animaties toe voor de stipjes */
+@keyframes float {
+    0% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-15px) translateX(15px); }
+    100% { transform: translateY(0) translateX(0); }
+}
+
+/* Cookie consent styles */
+.cookie-consent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 25, 47, 0.95);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 1000;
+    border-top: 1px solid rgba(100, 255, 218, 0.2);
+}
+
+.cookie-consent p {
+    margin: 0;
+    color: #e6f1ff;
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.cookie-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.accept-cookies {
+    background-color: #64ffda;
+    color: #0a192f;
+}
+
+.reject-cookies {
+    background-color: transparent;
+    color: #e6f1ff;
+    border: 1px solid #e6f1ff;
+}
+
+/* Services sectie */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 5%;
+}
+
+.service-card {
+    background: rgba(100, 255, 218, 0.05);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-card i {
+    font-size: 2.5rem;
+    color: #64ffda;
+    margin-bottom: 1rem;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 25, 47, 0.95);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: #0a192f;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    border: 1px solid rgba(100, 255, 218, 0.2);
+}
+
+/* Modal image adjustments */
+.modal-content .image-container {
+    position: relative;
+    width: 300px;
+    margin: 0 auto 20px;
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.modal-content .image-container.expanded {
+    width: 80%;
+    max-width: 1000px;
+}
+
+.expand-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(100, 255, 218, 0.9);
+    color: #0a192f;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.expand-icon:hover {
+    transform: scale(1.1);
+}
+
+.expanded .expand-icon {
+    transform: rotate(180deg);
+}
+
+.expanded .expand-icon:hover {
+    transform: rotate(180deg) scale(1.1);
+}
+
+.close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #64ffda;
+}
+
+.project-details {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: start;
+}
+
+.tech-stack ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tech-stack li {
+    background: rgba(100, 255, 218, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #64ffda;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 2rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #64ffda;
+    position: relative;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.profile-image:hover img {
+    transform: scale(1.1);
+}
+
+.project-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(100, 255, 218, 0.9);
+    padding: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.project:hover .project-overlay {
+    transform: translateY(0);
+}
+
+.close-modal {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 2rem;
+    color: #64ffda;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.close-modal:hover {
+    transform: rotate(90deg);
+}
+
+/* Verbeterde navigatie voor mobiel */
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    padding-right: 20px; /* Extra ruimte aan de rechterkant */
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Verberg de navigatie links op mobiel */
+    }
+}
+
+/* Verbeterde contact styling */
+.contact-container {
+    background: rgba(100, 255, 218, 0.05);
+    border-radius: 15px;
+    padding: 3rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.contact-info h2 {
+    color: #64ffda;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: rgba(100, 255, 218, 0.05);
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.contact-method:hover {
+    transform: translateX(10px);
+}
+
+.contact-method i {
+    color: #64ffda;
+    font-size: 1.5rem;
+}
+
+.contact-method a {
+    color: #e6f1ff;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+        gap: 2rem;
+    }
+}
+
+/* Update navigation for desktop */
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #e6f1ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 1rem;
+}
+
+.nav-links a:hover {
+    color: #64ffda;
+}
+
+/* Desktop-only navigation */
+.desktop-only {
+    display: flex;
+}
+
+/* Over mij sectie */
+#over-mij {
+    padding-top: 20px; /* Verminderde padding bovenaan */
+}
+
+/* Process section styling */
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.process-step {
+    background: rgba(100, 255, 218, 0.05);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.process-step:hover {
+    transform: translateY(-5px);
+}
+
+.process-step i {
+    font-size: 2.5rem;
+    color: #64ffda;
+    margin-bottom: 1rem;
+}
+
+.process-step h3 {
+    color: #64ffda;
+    margin: 1rem 0;
+    font-size: 1.3rem;
+}
+
+.process-step p {
+    color: #e6f1ff;
+    line-height: 1.6;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .process-steps {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+
+    .process-step {
+        padding: 1.5rem;
+    }
+
+    .process-step h3 {
+        font-size: 1.2rem;
+    }
+}
+
+.site-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.site-logo img {
+    height: 60px;
+    /* Pas aan indien nodig voor je design */
+}
+

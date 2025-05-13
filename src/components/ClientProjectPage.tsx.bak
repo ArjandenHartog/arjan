@@ -1,0 +1,254 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { ProjectPageAnimation, ProjectPageStaggerContainer, ProjectPageStaggerItem } from "@/components/animations/ProjectPageAnimation";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+
+interface Project {
+  id: number;
+  title: string;
+  shortDescription: string;
+  fullDescription: string;
+  image: string;
+  technologies: string[];
+  link?: string;
+  slug?: string;
+}
+
+interface ClientProjectPageProps {
+  project: Project;
+  relatedProjects: Project[];
+}
+
+export default function ClientProjectPage({ project, relatedProjects }: ClientProjectPageProps) {
+  const imageRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: imageRef,
+    offset: ["start start", "end start"]
+  });
+  
+  // Parallax effect voor de hoofdafbeelding
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
+
+  return (
+    <main className="py-16 min-h-screen bg-background">
+      <div className="container-custom">
+        {/* Breadcrumb navigatie */}
+        <ProjectPageAnimation>
+          <div className="mb-8 flex items-center space-x-2 text-sm text-muted-foreground">
+            <Link href="/#projecten" className="hover:text-primary transition-colors">
+              Projecten
+            </Link>
+            <span>/</span>
+            <span className="text-foreground">{project.title}</span>
+          </div>
+        </ProjectPageAnimation>
+
+        {/* Project header */}
+        <ProjectPageAnimation delay={0.1}>
+          <div className="mb-12">
+            <h1 className="text-4xl font-bold mb-4 text-foreground">{project.title}</h1>
+            <p className="text-xl text-muted-foreground">{project.shortDescription}</p>
+          </div>
+        </ProjectPageAnimation>
+
+        {/* Hoofdafbeelding met parallax */}
+        <div ref={imageRef} className="relative w-full h-[60vh] mb-12 rounded-lg overflow-hidden border border-primary/20 shadow-lg">
+          <motion.div style={{ y: imageY, scale: imageScale, opacity: imageOpacity }} className="absolute inset-0">
+            <Image 
+              src={project.image}
+              alt={project.title}
+              fill
+              className="object-cover object-center"
+              priority
+            />
+          </motion.div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
+          <div className="absolute bottom-0 left-0 p-6 z-10">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <ProjectPageStaggerContainer className="flex flex-wrap gap-2 mb-4" staggerChildren={0.05}>
+                {project.technologies.map((tech, index) => (
+                  <ProjectPageStaggerItem key={index}>
+                    <Badge className="bg-primary/50 hover:bg-primary text-white border-none">
+                      {tech}
+                    </Badge>
+                  </ProjectPageStaggerItem>
+                ))}
+              </ProjectPageStaggerContainer>
+            </motion.div>
+            
+            {project.link && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer">
+                    Live Website Bekijken <i className="fas fa-external-link-alt ml-2"></i>
+                  </a>
+                </Button>
+              </motion.div>
+            )}
+          </div>
+        </div>
+
+        {/* Content grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+          {/* Beschrijving */}
+          <ProjectPageAnimation delay={0.4} className="lg:col-span-2">
+            <Card className="p-6 border-primary/20 bg-card h-full shadow-md overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">Projectbeschrijving</h2>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="prose dark:prose-invert max-w-none"
+              >
+                <p className="text-card-foreground">{project.fullDescription}</p>
+              </motion.div>
+            </Card>
+          </ProjectPageAnimation>
+
+          {/* Details */}
+          <ProjectPageAnimation delay={0.5}>
+            <Card className="p-6 border-primary/20 bg-card h-full shadow-md">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">Details</h2>
+              </motion.div>
+              
+              <ProjectPageStaggerContainer className="space-y-4" staggerChildren={0.1} delay={0.6}>
+                <ProjectPageStaggerItem>
+                  <div>
+                    <h3 className="text-sm font-medium text-muted-foreground mb-1">Technologieën</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, index) => (
+                        <Badge key={index} variant="outline" className="bg-primary/5">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </ProjectPageStaggerItem>
+                
+                <ProjectPageStaggerItem>
+                  <div>
+                    <h3 className="text-sm font-medium text-muted-foreground mb-1">Project ID</h3>
+                    <p className="text-foreground">{project.id}</p>
+                  </div>
+                </ProjectPageStaggerItem>
+                
+                {project.link && (
+                  <ProjectPageStaggerItem>
+                    <div>
+                      <h3 className="text-sm font-medium text-muted-foreground mb-1">Website</h3>
+                      <a 
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline break-all"
+                      >
+                        {project.link}
+                      </a>
+                    </div>
+                  </ProjectPageStaggerItem>
+                )}
+                
+                <ProjectPageStaggerItem>
+                  <div className="pt-4">
+                    <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                      <Button asChild variant="outline" className="w-full">
+                        <Link href="/#contact">
+                          Vraag meer informatie <i className="fas fa-arrow-right ml-2"></i>
+                        </Link>
+                      </Button>
+                    </motion.div>
+                  </div>
+                </ProjectPageStaggerItem>
+              </ProjectPageStaggerContainer>
+            </Card>
+          </ProjectPageAnimation>
+        </div>
+
+        {/* Gerelateerde projecten */}
+        {relatedProjects.length > 0 && (
+          <ProjectPageAnimation delay={0.7}>
+            <div className="mt-16">
+              <h2 className="text-2xl font-semibold mb-6 text-foreground">Gerelateerde Projecten</h2>
+              <ProjectPageStaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" staggerChildren={0.1}>
+                {relatedProjects.map((relatedProject) => (
+                  <ProjectPageStaggerItem key={relatedProject.id}>
+                    <Link href={`/project/${relatedProject.slug}`}>
+                      <motion.div
+                        whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgba(var(--color-primary-rgb), 0.1), 0 10px 10px -5px rgba(var(--color-primary-rgb), 0.05)" }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      >
+                        <Card className="overflow-hidden border-primary/20 hover:border-primary/70 transition-all duration-300 h-full bg-card">
+                          <div className="relative h-40 overflow-hidden">
+                            <motion.div whileHover={{ scale: 1.05 }} className="h-full w-full">
+                              <Image
+                                src={relatedProject.image}
+                                alt={relatedProject.title}
+                                fill
+                                className="object-cover"
+                              />
+                            </motion.div>
+                          </div>
+                          <div className="p-4">
+                            <h3 className="text-lg font-semibold mb-2 text-foreground">
+                              {relatedProject.title}
+                            </h3>
+                            <p className="text-muted-foreground text-sm line-clamp-2">
+                              {relatedProject.shortDescription}
+                            </p>
+                          </div>
+                        </Card>
+                      </motion.div>
+                    </Link>
+                  </ProjectPageStaggerItem>
+                ))}
+              </ProjectPageStaggerContainer>
+            </div>
+          </ProjectPageAnimation>
+        )}
+        
+        {/* Terug naar projecten knop */}
+        <ProjectPageAnimation delay={0.8}>
+          <div className="mt-12 text-center">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button asChild variant="outline" className="border-primary/30 hover:bg-primary/10">
+                <Link href="/#projecten">
+                  <i className="fas fa-arrow-left mr-2"></i> Terug naar alle projecten
+                </Link>
+              </Button>
+            </motion.div>
+          </div>
+        </ProjectPageAnimation>
+      </div>
+    </main>
+  );
+} 
