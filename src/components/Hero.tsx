@@ -61,7 +61,7 @@ export function Hero() {
           
           <FadeIn delay={0.4} direction="up">
             <p className="text-xl mb-8 text-muted-foreground">
-              Ontwikkelaar en ICT specialist die bedrijven helpt met technische uitdagingen en mooie websites maakt.
+              Ontwikkelaar en ICT specialist
             </p>
           </FadeIn>
           

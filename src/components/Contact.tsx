@@ -1,40 +1,44 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useRef, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
-import { useRef } from "react";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { StaggerContainer, StaggerItem } from "@/components/animations/StaggerContainer";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 
 export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  
+  useEffect(() => {
+    // Initialize EmailJS with your user ID
+    emailjs.init("MyO3qqSVY74zlAyCC");
+  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     
     try {
-      const formData = new FormData(e.currentTarget);
-      const data = {
-        name: formData.get('user_name'),
-        email: formData.get('user_email'),
-        message: formData.get('message')
-      };
+      const serviceID = 'default_service';
+      const templateID = 'template_xqzviea';
       
-      console.log('Form data:', data);
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
+      await emailjs.sendForm(
+        serviceID, 
+        templateID, 
+        e.currentTarget
+      );
       
       toast.success('Bericht succesvol verzonden!');
       formRef.current?.reset();
     } catch (error) {
-      toast.error('Er ging iets mis. Probeer het later opnieuw.');
       console.error('Form submission error:', error);
+      toast.error('Er ging iets mis. Probeer het later opnieuw.');
     } finally {
       setIsSubmitting(false);
     }
@@ -107,7 +111,7 @@ export function Contact() {
                 <FadeIn direction="up" delay={0.2}>
                   <Input 
                     type="text" 
-                    id="name" 
+                    id="user_name" 
                     name="user_name" 
                     placeholder="Uw naam" 
                     className="bg-background border-primary/20 focus:border-primary"
@@ -119,7 +123,7 @@ export function Contact() {
                 <FadeIn direction="up" delay={0.3}>
                   <Input 
                     type="email" 
-                    id="email" 
+                    id="user_email" 
                     name="user_email" 
                     placeholder="Uw e-mail" 
                     className="bg-background border-primary/20 focus:border-primary"

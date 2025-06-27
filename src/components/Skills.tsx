@@ -77,6 +77,16 @@ export function Skills() {
       icon: "server",
       url: "https://www.beversoftware.nl/diensten/ict-beheer/",
     },
+    {
+      name: "Laravel",
+      icon: "laravel",
+      url: "https://laravel.com/",
+    },
+    {
+      name: "Stripe",
+      icon: "stripe",
+      url: "https://stripe.com/",
+    },
   ];
 
   return (

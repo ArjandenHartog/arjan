@@ -1,21 +1,8 @@
 import type { Metadata } from "next";
-import { Poppins, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { FontAwesomeScript } from "@/components/FontAwesome";
 import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@/components/Analytics";
-
-const poppins = Poppins({
-  variable: "--font-geist-sans",
-  weight: ["400", "600"],
-  subsets: ["latin"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-geist-mono",
-  weight: ["400", "500"],
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Arjan den Hartog",
@@ -54,7 +41,7 @@ export default function RootLayout({
         <FontAwesomeScript />
       </head>
       <body
-        className={`${poppins.variable} ${jetbrainsMono.variable} antialiased`}
+        className="antialiased font-sans"
       >
         {children}
         <Toaster position="bottom-right" />

@@ -22,6 +22,15 @@ export function Projects() {
 
   const projects = [
     {
+      id: 9,
+      title: "PulseGuard",
+      shortDescription: "Complete monitoring oplossing voor websites, servers en apparaten",
+      fullDescription: "PulseGuard is een uitgebreide monitoring platform dat ik samen met vrienden ontwikkel voor het monitoren van websites, servers en apparaten. Het systeem biedt real-time monitoring, uptime tracking, performance metrics en alerting functionaliteiten. De applicatie is gebouwd met moderne webtechnologieën en biedt een intuïtieve interface voor het beheren van monitoring taken. Gebruikers kunnen custom dashboards instellen, notificaties configureren en gedetailleerde rapporten genereren over de prestaties van hun infrastructuur.",
+      image: "https://pulseguard.nl/images/domains.png",
+      technologies: ["Laravel", "JavaScript", "Stripe", "Clerk", "Monitoring", "Real-time", "APIs", "Dashboard", "Notifications"],
+      link: "https://pulseguard.nl/"
+    },
+    {
       id: 8,
       title: "LampenTotaal Copilot",
       shortDescription: "Een Electron applicatie met diverse AI-tools, ERP-integratie en automatiseringen zoals bulk mail versturen",
