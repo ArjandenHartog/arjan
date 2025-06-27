@@ -33,6 +33,16 @@ export function Skills() {
       url: "https://learn.microsoft.com/en-us/dotnet/csharp/",
     },
     {
+      name: "Python",
+      icon: "python",
+      url: "https://www.python.org/",
+    },
+    {
+      name: "PHP",
+      icon: "php",
+      url: "https://www.php.net/",
+    },
+    {
       name: "WordPress",
       icon: "wordpress",
       url: "https://wordpress.org/",
