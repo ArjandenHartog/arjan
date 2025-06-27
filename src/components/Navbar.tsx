@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {
   return (
-    <nav className="border-b bg-card py-4">
+    <nav className="border-b bg-card py-4 fixed top-0 left-0 right-0 z-50">
       <div className="container-custom flex justify-between items-center">
         <Link href="/" className="flex items-center gap-2">
           <span className="text-xl font-semibold">Arjan den Hartog</span>

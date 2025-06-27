@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main>
+      <main className="pt-16">
         <Hero />
         <AboutMe />
         <ProcessSteps />

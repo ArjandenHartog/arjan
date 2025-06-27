@@ -4,8 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { StaggerContainer, StaggerItem } from "@/components/animations/StaggerContainer";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 export function Skills() {
+  const [showAll, setShowAll] = useState(false);
+  
   const skills = [
     {
       name: "HTML",
@@ -99,6 +103,8 @@ export function Skills() {
     },
   ];
 
+  const visibleSkills = showAll ? skills : skills.slice(0, 5);
+
   return (
     <section id="skills" className="py-16 bg-secondary/5 overflow-hidden">
       <div className="container-custom">
@@ -108,11 +114,12 @@ export function Skills() {
           </h2>
         </FadeIn>
         <StaggerContainer 
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4"
+          key={showAll ? "all-skills" : "some-skills"}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
           staggerChildren={0.05}
         >
-          {skills.map((skill, index) => (
-            <StaggerItem key={index} direction="up">
+          {visibleSkills.map((skill, index) => (
+            <StaggerItem key={`${skill.name}-${index}`} direction="up">
               <motion.a
                 href={skill.url}
                 target="_blank"
@@ -134,6 +141,16 @@ export function Skills() {
             </StaggerItem>
           ))}
         </StaggerContainer>
+        
+        <div className="flex justify-center mt-8">
+          <Button 
+            variant="outline" 
+            onClick={() => setShowAll(!showAll)}
+            className="border-primary/20 hover:border-primary/70 hover:bg-primary/10"
+          >
+            {showAll ? "Toon minder" : "Toon meer"}
+          </Button>
+        </div>
       </div>
     </section>
   );
